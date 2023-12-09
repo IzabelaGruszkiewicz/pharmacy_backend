@@ -3,7 +3,7 @@ CREATE TABLE orders
     order_id    SERIAL         NOT NULL,
     date_order  DATE           NOT NULL,
     status      VARCHAR(20)    NOT NULL,
-    amount      NUMERIC(10, 2) NOT NULL,
+    total_price NUMERIC(10, 2) NOT NULL,
     customer_id INT            NOT NULL,
     payment_id  INT            NOT NULL,
     delivery_id INT            NOT NULL,

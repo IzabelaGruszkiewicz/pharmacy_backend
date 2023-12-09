@@ -2,6 +2,7 @@ package com.example.demo.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.math.BigDecimal;
 
 
@@ -18,9 +19,6 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Integer productId;
-
-    @Column(name = "name")
-    private String name;
 
     @Column(name = "price")
     private BigDecimal price;

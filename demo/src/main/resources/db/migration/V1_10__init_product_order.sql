@@ -5,6 +5,7 @@ CREATE TABLE product_order
     price            NUMERIC(10, 2) NOT NULL,
     product_id       INT            NOT NULL,
     order_id         INT            NOT NULL,
+    PRIMARY KEY (product_order_id),
     CONSTRAINT fk_product_order_product
         FOREIGN KEY (product_id)
             REFERENCES product (product_id),

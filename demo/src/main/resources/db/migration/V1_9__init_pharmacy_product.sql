@@ -4,6 +4,7 @@ CREATE TABLE pharmacy_product
     quantity            INT    NOT NULL,
     pharmacy_id         INT    NOT NULL,
     product_id          INT    NOT NULL,
+    PRIMARY KEY (pharmacy_product_id),
     CONSTRAINT fk_pharmacy_product_pharmacy
         FOREIGN KEY (pharmacy_id)
             REFERENCES pharmacy (pharmacy_id),
