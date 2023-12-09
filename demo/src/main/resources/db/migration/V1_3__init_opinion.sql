@@ -7,5 +7,5 @@ CREATE TABLE opinion
     PRIMARY KEY (opinion_id),
     CONSTRAINT fk_opinion_product
         FOREIGN KEY (product_id)
-            REFERENCES product (product_id);
-)
+            REFERENCES product (product_id)
+);

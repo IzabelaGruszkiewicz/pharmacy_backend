@@ -1,4 +1,4 @@
-CREATE TABLE order
+CREATE TABLE orders
 (
     order_id    SERIAL         NOT NULL,
     date_order  DATE           NOT NULL,

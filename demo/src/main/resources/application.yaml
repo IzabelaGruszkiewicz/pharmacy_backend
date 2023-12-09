@@ -1,12 +1,12 @@
 server:
     port: 8190
     servlet:
-        context-path:/zajavka
+        context-path: /pharmacy
 spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://localhost:5432/apteka
+        url: jdbc:postgresql://localhost:5432/project_pharmacy
         username: postgres
         password: postgres
         hikari:
@@ -20,6 +20,8 @@ spring:
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
+    flyway:
+        baseline-on-migrate: true
     mvc:
         hiddenmethod:
             filter:

@@ -10,6 +10,6 @@ CREATE TABLE product_order
             REFERENCES product (product_id),
     CONSTRAINT fk_product_order_order
         FOREIGN KEY (order_id)
-            REFERENCES order (order_id)
+            REFERENCES orders (order_id)
 
 );
