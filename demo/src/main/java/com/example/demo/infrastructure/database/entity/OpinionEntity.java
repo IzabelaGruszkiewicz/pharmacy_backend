@@ -22,7 +22,7 @@ public class OpinionEntity {
     @Column(name = "star")
     private Integer star;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 }
