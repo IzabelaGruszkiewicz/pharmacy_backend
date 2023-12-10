@@ -11,4 +11,4 @@ CREATE TABLE pharmacy_product
     CONSTRAINT fk_pharmacy_product_product
         FOREIGN KEY (product_id)
             REFERENCES product (product_id)
-)
+);
