@@ -19,18 +19,12 @@ public class AddressEntity {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "street")
-    private String street;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "house_number")
-    private String houseNumber;
+    @Column(name = "postal_code")
+    private String postalCode;
 
-    @Column(name = "flat_number")
-    private String flatNumber;
-
-    @Column(name = "post_code")
-    private String postCode;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "address")
-    private CustomerEntity customer;
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "address")
+//    private CustomerEntity customer;
 }

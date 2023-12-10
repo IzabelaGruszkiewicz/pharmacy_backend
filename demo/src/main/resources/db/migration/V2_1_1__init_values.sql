@@ -1,4 +1,4 @@
-INSERT INTO Address (city, street, postal_code)
+INSERT INTO Address (city, address, postal_code)
 VALUES
     ('New York', 'Broadway St', '10001'),
     ('Los Angeles', 'Hollywood Blvd', '90001'),
