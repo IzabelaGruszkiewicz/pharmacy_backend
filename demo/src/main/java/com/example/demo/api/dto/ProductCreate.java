@@ -9,7 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductCreate {
+    private String brand;
     private String name;
     private Double price;
-    private Integer amount;
+    private Integer amountToAdd;
+    private String photoPath;
+    private String description;
+    private Integer categoryId;
+    private Integer subcategoryId;
 }

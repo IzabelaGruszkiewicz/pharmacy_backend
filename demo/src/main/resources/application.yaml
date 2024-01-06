@@ -1,7 +1,6 @@
 server:
     port: 8190
-    servlet:
-        context-path: /pharmacy
+
 spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource

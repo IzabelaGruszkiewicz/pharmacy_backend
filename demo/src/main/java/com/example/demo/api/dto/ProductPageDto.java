@@ -6,27 +6,32 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto {
+public class ProductPageDto {
+    private Integer id;
+    private String category;
+    private String subcategory;
     private String brand;
     private String name;
+    private String description;
     private Double price;
     private Integer magazineStock;
     private String photoPath;
-    private String description;
+    private long totalElements;
 
-
-    public ProductDto(ProductEntity product) {
+    public ProductPageDto(ProductEntity product, long totalElements) {
+        this.id = product.getProductId();
+        this.category = product.getCategory().getName();
+        this.subcategory = product.getSubcategory().getName();
         this.brand = product.getBrand();
         this.name = product.getName();
+        this.description = product.getDescription();
         this.price = product.getPrice();
-        this.description=product.getDescription();
         this.magazineStock = product.getMagazineStock();
         this.photoPath = product.getPhotoPath();
+        this.totalElements = totalElements;
     }
 }
