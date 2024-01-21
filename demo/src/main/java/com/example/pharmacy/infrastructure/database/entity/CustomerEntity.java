@@ -1,7 +1,10 @@
 package com.example.pharmacy.infrastructure.database.entity;
 
+import com.example.pharmacy.api.dto.OrderCreate;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -17,19 +20,22 @@ public class CustomerEntity {
     @Column(name = "customer_id")
     private Integer customerId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "customer_hash")
+    private String customerHash;
 
-    @Column(name = "surname")
-    private String surname;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
+    @Column(name = "full_name")
+    private String fullName;
 
     @Column(name = "email")
     private String email;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
-    private AddressEntity address;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<AddressEntity> addresses;
+
+
+    public CustomerEntity(OrderCreate orderCreate) {
+        this.customerHash = orderCreate.getCustomerHash();
+        this.fullName = orderCreate.getFullName();
+        this.email = orderCreate.getEmail();
+    }
 }

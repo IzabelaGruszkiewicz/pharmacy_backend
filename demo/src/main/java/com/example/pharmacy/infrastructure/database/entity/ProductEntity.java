@@ -2,7 +2,9 @@ package com.example.pharmacy.infrastructure.database.entity;
 
 import com.example.pharmacy.api.dto.ProductCreate;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 

@@ -26,4 +26,5 @@ public class ProductDto {
         this.magazineStock = product.getMagazineStock();
         this.photoPath = product.getPhotoPath();
     }
+
 }

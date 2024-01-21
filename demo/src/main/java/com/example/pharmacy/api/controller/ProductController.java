@@ -30,6 +30,10 @@ public class ProductController {
         return productService.getByCategoryId(categoryId);
     }
 
+    @GetMapping(value = "/search/{productBrand}")
+    public List<ProductDetailsDto> getByProductBrand(@PathVariable String productBrand) {
+        return productService.getByProductBrand(productBrand);
+    }
     @GetMapping()
     public List<ProductPageDto> getByCategoryNameAndSubcategory(
             @RequestParam(name = "category") String category,

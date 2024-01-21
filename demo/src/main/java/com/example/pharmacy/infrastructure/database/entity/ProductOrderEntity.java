@@ -30,6 +30,6 @@ public class ProductOrderEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private OrdersEntity orders;
+    private OrderEntity orders;
 
 }

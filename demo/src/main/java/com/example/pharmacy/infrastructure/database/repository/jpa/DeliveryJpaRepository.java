@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeliveryJpaRepository extends JpaRepository<DeliveryEntity, Integer> {
+    DeliveryEntity findByName(String name);
 }

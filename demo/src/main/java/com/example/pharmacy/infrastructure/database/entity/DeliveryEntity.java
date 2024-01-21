@@ -1,9 +1,8 @@
 package com.example.pharmacy.infrastructure.database.entity;
 
+import com.example.pharmacy.api.dto.DeliveryCreate;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -25,5 +24,11 @@ public class DeliveryEntity {
     private String type;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private double price;
+
+    public DeliveryEntity(DeliveryCreate deliveryCreate) {
+        this.name=deliveryCreate.getName();
+        this.type=deliveryCreate.getType();
+        this.price=deliveryCreate.getPrice();
+    }
 }

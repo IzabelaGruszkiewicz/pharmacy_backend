@@ -32,12 +32,18 @@ public class ProductService {
     }
 
     public ProductDto addProduct(ProductCreate productCreate) {
-        CategoryEntity categoryEntity = categoryJpaRepository.findById(productCreate.getCategoryId()).orElseThrow(
-                () -> new RuntimeException("Nie znaleziono kategorii o podanym id: " + productCreate.getCategoryId())
+        CategoryEntity categoryEntity = categoryJpaRepository
+                .findById(productCreate.getCategoryId())
+                .orElseThrow(
+                        () -> new RuntimeException("Nie znaleziono kategorii o podanym id: "
+                                + productCreate.getCategoryId())
         );
 
-        SubcategoryEntity subcategoryEntity = subcategoryJpaRepository.findById(productCreate.getSubcategoryId()).orElseThrow(
-                () -> new RuntimeException("Nie znaleziono podkategorii o podanym id: " + productCreate.getSubcategoryId())
+        SubcategoryEntity subcategoryEntity = subcategoryJpaRepository
+                .findById(productCreate.getSubcategoryId())
+                .orElseThrow(
+                () -> new RuntimeException("Nie znaleziono podkategorii o podanym id: "
+                        + productCreate.getSubcategoryId())
         );
 
         ProductEntity product = new ProductEntity(productCreate, categoryEntity, subcategoryEntity);
@@ -46,14 +52,16 @@ public class ProductService {
     }
 
     public List<ProductDto> getByCategoryId(Integer categoryId) {
-        List<ProductEntity> byCategoryId = productJpaRepository.findByCategoryCategoryId(categoryId);
+        List<ProductEntity> byCategoryId = productJpaRepository
+                .findByCategoryCategoryId(categoryId);
         return byCategoryId.stream()
                 .map(ProductDto::new)
                 .collect(Collectors.toList());
     }
 
     public BestsellersDto getBestsellers(Integer categoryId) {
-        List<ProductEntity> byCategoryId = productJpaRepository.findByCategoryCategoryId(categoryId);
+        List<ProductEntity> byCategoryId = productJpaRepository
+                .findByCategoryCategoryId(categoryId);
         List<ProductEntity> collected = byCategoryId.stream()
                 .limit(4)
                 .toList();
@@ -84,9 +92,11 @@ public class ProductService {
         return heroPhotoPath;
     }
 
-    public List<ProductPageDto> getByCategoryNameAndSubcategory(String category, String subcategory, int limit, int page) {
+    public List<ProductPageDto> getByCategoryNameAndSubcategory(
+            String category, String subcategory, int limit, int page) {
         Pageable pageable = PageRequest.of(--page, limit);
-        Page<ProductEntity> result = productJpaRepository.findProductByNameInCategoryAndSubcategory(category, subcategory, pageable);
+        Page<ProductEntity> result = productJpaRepository
+                .findProductByNameInCategoryAndSubcategory(category, subcategory, pageable);
         long totalElements = result.getTotalElements();
         List<ProductEntity> content = result.getContent();
         return content.stream()
@@ -95,15 +105,19 @@ public class ProductService {
     }
 
     public ProductDetailsDto getByProductId(Integer productId) {
-        ProductEntity product = productJpaRepository.findById(productId).orElseThrow(
-                () -> new RuntimeException("Nie znaleziono produktu o podanym id: " + productId));
+        ProductEntity product = productJpaRepository
+                .findById(productId).orElseThrow(
+                () -> new RuntimeException("Nie znaleziono produktu o podanym id: "
+                        + productId));
         return new ProductDetailsDto(product);
     }
 
     public List<ProductDetailsDto> getDiscounts(Integer numberOfElements) {
         List<ProductDetailsDto> discounts = new ArrayList<>();
         for (int i = 0; i < numberOfElements; i++) {
-            discounts.add(new ProductDetailsDto(productJpaRepository.findById((int) Math.ceil(numberOfElements * 0.5* (i +1))).orElseThrow(
+            discounts.add(new ProductDetailsDto(productJpaRepository
+                    .findById((int) Math.ceil(numberOfElements * 0.5* (i +1)))
+                    .orElseThrow(
                     () -> new RuntimeException("Nie znaleziono produktu o podanym id")
             )));
         }
@@ -111,4 +125,10 @@ public class ProductService {
         return discounts;
     }
 
+    public List<ProductDetailsDto> getByProductBrand(String productBrand) {
+        List<ProductEntity> byBrand = productJpaRepository.findByBrandIgnoreCase(productBrand);
+         return byBrand.stream()
+                .map(e->new ProductDetailsDto(e))
+                .toList();
+    }
 }

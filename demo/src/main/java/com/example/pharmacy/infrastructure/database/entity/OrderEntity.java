@@ -1,9 +1,10 @@
 package com.example.pharmacy.infrastructure.database.entity;
 
+import com.example.pharmacy.api.dto.OrderCreate;
+import com.example.pharmacy.api.dto.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
-public class OrdersEntity {
+public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
@@ -26,7 +27,7 @@ public class OrdersEntity {
     private String status;
 
     @Column(name = "total_price")
-    private BigDecimal totalPrice;
+    private double totalPrice;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
@@ -39,4 +40,13 @@ public class OrdersEntity {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private DeliveryEntity delivery;
+
+    public OrderEntity(OrderCreate orderCreate, PaymentEntity payment, DeliveryEntity delivery, CustomerEntity foundCustomer) {
+        this.dateOrder=LocalDateTime.now();
+        this.status=OrderStatus.CREATED.name();
+        this.totalPrice=orderCreate.getTotalCost();
+        this.customer=foundCustomer;
+        this.payment=payment;
+        this.delivery=delivery;
+    }
 }
