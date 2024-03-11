@@ -6,4 +6,4 @@ The main objective of the project is to develop a web application with access to
 ![image](https://github.com/IzabelaGruszkiewicz/pharmacy_backend/assets/131397409/7f6bbcc0-90d9-46a7-8d4c-614a6360bb81)
 
 ## Tech stack
-Java, Spring Boot, React
+Java, Spring Boot, React, PostgreSQL
